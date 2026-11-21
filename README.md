@@ -143,3 +143,67 @@ git push
 
 ### Warning
 - `git reset --hard <hash>` deletes all later changes permanently, so I avoid it unless I am sure
+
+## Branches and merging
+
+### Create and switch branches
+- `git branch` – list branches; the current one has a `*`
+- `git branch new_branch` – create a branch
+- `git switch new_branch` – move to that branch
+- `git switch -c new_branch` – create a branch and move to it in one step
+
+### Make a change on a branch
+1. Switch to the branch:
+```bash
+git switch new_branch
+```
+2. Edit a file, then stage and commit it:
+```bash
+git add file_name
+git commit -m "message"
+```
+3. Optionally upload the branch to GitHub:
+```bash
+git push -u origin new_branch
+```
+
+### Merge a branch into main
+1. Go to the branch that should receive the changes:
+```bash
+git switch main
+```
+2. Merge the other branch into it:
+```bash
+git merge new_branch
+```
+3. Upload the result:
+```bash
+git push
+```
+4. Delete the branch if it is no longer needed:
+```bash
+git branch -d new_branch
+```
+
+### Merge conflicts
+A conflict happens when the same lines of a file were changed on both branches. Git stops the merge and marks the file like this:
+```
+<<<<<<< HEAD
+version from main
+=======
+version from new_branch
+>>>>>>> new_branch
+```
+To resolve it:
+1. Open the file and keep the correct text. Delete the three marker lines.
+2. Stage the fixed file:
+```bash
+git add file_name
+```
+3. Finish the merge:
+```bash
+git commit
+```
+
+- `git merge --abort` – cancel the merge and return to the state before it
+- `git status` – shows which files are in conflict
