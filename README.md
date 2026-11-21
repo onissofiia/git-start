@@ -98,9 +98,48 @@ git commit -m "message"
 ```bash
 git push
 ```
-
 > ## The main idea
 >
 > - `add` stages changes
 > - `commit` saves them
 > - `push` uploads them
+
+
+## Viewing history and going back to an older version
+
+### Print all commits
+```bash
+git log --oneline
+```
+Each line is one commit: a short ID (hash) and its message. Newest is at the top. Press `q` to leave the list.
+- `git log` – full history with author and date
+- `git log --oneline -- file_name` – history of one file only
+- `git show <hash>` – what a specific commit changed
+
+### Restore a file to an earlier version
+1. Find the commit from before the change:
+```bash
+git log --oneline -- file_name
+```
+2. Optionally compare it with the current file:
+```bash
+git diff <hash> file_name
+```
+3. Restore the file from that commit:
+```bash
+git restore --source=<hash> file_name
+```
+4. Save the restored version as a new commit and upload it:
+```bash
+git add file_name
+git commit -m "message"
+git push
+```
+
+### Other ways to go back
+- `git restore README.md` – discard changes I have not committed yet
+- `git revert <hash>` – undo a whole commit by creating a new commit that reverses it; the history stays intact
+- `git switch main` – return to the latest version after looking at an old commit with `git checkout <hash>`
+
+### Warning
+- `git reset --hard <hash>` deletes all later changes permanently, so I avoid it unless I am sure
