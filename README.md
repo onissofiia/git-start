@@ -1,7 +1,7 @@
 # Git Tutorial
 *by Sofiya Aniskevich
 21.11.2026*
-adding extra line
+
 ## Description of the repository and the files
 
 This is a repository for the 5th assignment for the BT4BR class, which can later be used as a reminder of Git commands.
