@@ -1,6 +1,6 @@
-# Git Asiignment
-*by Sofiya Aniskevich*
-*21.11.2026*
+# Git Tutorial
+*by Sofiya Aniskevich
+21.11.2026*
 
 ## Description of the repository and the files
 
@@ -37,3 +37,70 @@ Working directory  -->  Staging area  -->  Local repository  -->  Remote reposit
 - **origin:** the default name for the remote repository
 - **`.git` folder:** hidden folder holding the whole history; deleting it removes the repo
 
+## Setting up (once per computer)
+
+1. Set the name and email on your commits:
+```bash
+git config --global user.name "your_username"
+git config --global user.email "your@email"
+```
+`--global` applies the setting to your whole user account, not just one repository.
+
+2. Create an SSH key to pair your computer with GitHub:
+```bash
+ssh-keygen -t ed25519 -C "your-email@example.com"
+```
+The public key is saved in `~/.ssh/id_ed25519.pub`.
+
+3. Print the public key, copy the output, and add it at GitHub → Settings → SSH and GPG keys → New SSH key:
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+4. Test the connection:
+```bash
+ssh -T git@github.com
+```
+The output should be: `Hi your_username! You've successfully authenticated, but GitHub does not provide shell access.`
+
+## Cloning the repository
+
+1. Create the repository on GitHub and copy its SSH link, which looks like this: `git@github.com:your_username/repository.git`
+2. Go to the folder you want to work in:
+```bash
+cd path/to/folder
+```
+3. Clone the repository. It will be created inside the folder you are currently in:
+```bash
+git clone <ssh_url>
+```
+4. Enter the new repository folder:
+```bash
+cd repository
+```
+
+## Making your first commit
+
+1. Create or change a file
+2. Check what has changed:
+```bash
+git status
+```
+3. Stage a file for the commit:
+```bash
+git add your-file
+```
+4. Save a snapshot locally:
+```bash
+git commit -m "message"
+```
+5. Upload the commit to GitHub:
+```bash
+git push
+```
+
+> ## The main idea
+>
+> - `add` stages changes
+> - `commit` saves them
+> - `push` uploads them
